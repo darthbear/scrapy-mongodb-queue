@@ -21,12 +21,12 @@ class Scheduler(object):
 	mongodb_server = settings.get('MONGODB_QUEUE_SERVER', 'localhost')
 	mongodb_port = settings.get('MONGODB_QUEUE_PORT', 27017)
 	mongodb_db = settings.get('MONGODB_QUEUE_DB', 'scrapy')
-        persist = settings.get('SCHEDULER_PERSIST', True)
-        queue_key = settings.get('SCHEDULER_QUEUE_NAME', None)
-        queue_type = settings.get('QUEUE_TYPE', 'FIFO')
+        persist = settings.get('MONGODB_QUEUE_PERSIST', True)
+        queue_key = settings.get('MONGODB_QUEUE_NAME', None)
+        queue_type = settings.get('MONGODB_QUEUE_TYPE', 'FIFO')
 
 	if queue_type not in ('FIFO', 'LIFO'):
-	    raise Error('QUEUE_TYPE must be FIFO (default) or LIFO')
+	    raise Error('MONGODB_QUEUE_TYPE must be FIFO (default) or LIFO')
 
 	if queue_type == 'LIFO':
 	    queue_order = -1

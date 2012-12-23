@@ -13,6 +13,6 @@ Other options:
 * MONGODB_QUEUE_SERVER: mongodb server (default: localhost)
 * MONGODB_QUEUE_PORT: mongodb port (default: 27017)
 * MONGODB_QUEUE_DB: mongodb db (default: scrapy)
-* SCHEDULER_PERSIST: should the queue be persisted after the crawl or if the crawl is interrupted (default: True)
-* SCHEDULER_QUEUE_NAME: name of the collection. By default it will be set to the name of the spider postfixed by "_queue"
-* QUEUE_TYPE: can be FIFO or LIFO
+* MONGODB_QUEUE_PERSIST: should the queue be persisted after the crawl or if the crawl is interrupted (default: True)
+* MONGODB_QUEUE_NAME: name of the collection. By default it will be set to the name of the spider postfixed by "_queue"
+* MONGODB_QUEUE_TYPE: can be FIFO or LIFO
