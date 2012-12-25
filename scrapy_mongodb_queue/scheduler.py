@@ -1,5 +1,4 @@
 from scrapy.utils.reqser import request_to_dict, request_from_dict
-import marshal
 import pymongo
 import datetime
 
@@ -54,16 +53,17 @@ class Scheduler(object):
             self.collection.drop()
 
     def enqueue_request(self, request):
-	data = marshal.dumps(request_to_dict(request, self.spider))
+	data = request_to_dict(request, self.spider)
 	
 	self.collection.insert({
-		'data': data 
+		'data': data,
+		'created': datetime.datetime.utcnow()
 	})
 
     def next_request(self):
 	entry = self.collection.find_and_modify(sort={"$natural":self.queue_order}, remove=True)
 	if entry:
-	    request = request_from_dict(marshal.loads(entry['data']), self.spider)
+	    request = request_from_dict(entry['data'], self.spider)
 	    return request
 	
         return None
